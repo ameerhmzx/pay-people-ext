@@ -1,0 +1,4 @@
+{
+  "routesDirectory": "./entrypoints/popup/routes",
+  "generatedRouteTree": "./entrypoints/popup/routeTree.gen.ts"
+}
