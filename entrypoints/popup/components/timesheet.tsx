@@ -25,8 +25,6 @@ export default function Timesheet() {
   const { data: clockStatus } = useClockStatus();
   const { mutateAsync: setTimeSheet, isError } = useSetTimesheet();
 
-  // TODO: get Last submitted project and auto select the project field
-
   const { control, register, formState, handleSubmit } = useForm({
     defaultValues: {
       projectId: String(sheet?.ProjectID ?? scheduled?.projectId ?? ""),

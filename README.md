@@ -22,7 +22,7 @@ And filling the timesheet.
 3. **Tailwind** & **Next UI**: for basic UI needs.
 4. **Tanstack Query**: to manage API calls.
 5. **Tanstack Router**: for routing within the extension.
-6. **BUN**: Why not? 
+6. **BUN**: Why not?
 
 ## How to install
 
@@ -32,8 +32,25 @@ Even I don't yet :P
 
 I am open to contributions. Feel free to fork the project and submit a PR.
 There are a lot of things that can be improved. Some of them are:
+
 1. **Use a common fetch / axios client**: I am using `fetch` directly in the code. It would be better to use a common
    client.
 2. **Indicate if clocked in or not**: A small indicator on the extension icon to show if you are clocked in or not.
 3. **Auto select last submitted Project for the timesheet dropdown**: The extension can remember the last project you
    submitted the timesheet for and auto-select it for the next time.
+
+## Run Locally
+
+1. Clone the project
+2. Install dependencies
+   ```bash
+   bun install
+   ```
+3. Start the development server
+   ```bash
+   bun dev
+   ```
+4. Watch routes (Tanstack's file based router for popup)
+   ```bash
+   bun watch-routes
+   ```
