@@ -1,0 +1,15 @@
+{
+  "release": {
+    "branches": ["master"]
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    ["@semantic-release/github", {
+      "assets": [".output/pay-people-ext-*-chrome.zip", ".output/firefox-mv2.zip"]
+    }],
+    ["@semantic-release/exec", {
+      "prepareCmd": "bun run generate-routes && bun run zip && bun run zip:firefox"
+    }]
+  ]
+}

@@ -102,14 +102,83 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({
-  IndexRoute,
-  AuthenticatedHomeRoute,
-  UnauthenticatedLoginRoute,
-  AuthenticatedGeoGeoDeniedRoute,
-  AuthenticatedGeoGeoNoSupportRoute,
-  AuthenticatedGeoGeoPromptRoute,
-})
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/home': typeof AuthenticatedHomeRoute
+  '/login': typeof UnauthenticatedLoginRoute
+  '/geo-denied': typeof AuthenticatedGeoGeoDeniedRoute
+  '/geo-no-support': typeof AuthenticatedGeoGeoNoSupportRoute
+  '/geo-prompt': typeof AuthenticatedGeoGeoPromptRoute
+}
+
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/home': typeof AuthenticatedHomeRoute
+  '/login': typeof UnauthenticatedLoginRoute
+  '/geo-denied': typeof AuthenticatedGeoGeoDeniedRoute
+  '/geo-no-support': typeof AuthenticatedGeoGeoNoSupportRoute
+  '/geo-prompt': typeof AuthenticatedGeoGeoPromptRoute
+}
+
+export interface FileRoutesById {
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/_authenticated/home': typeof AuthenticatedHomeRoute
+  '/_unauthenticated/login': typeof UnauthenticatedLoginRoute
+  '/_authenticated/_geo/geo-denied': typeof AuthenticatedGeoGeoDeniedRoute
+  '/_authenticated/_geo/geo-no-support': typeof AuthenticatedGeoGeoNoSupportRoute
+  '/_authenticated/_geo/geo-prompt': typeof AuthenticatedGeoGeoPromptRoute
+}
+
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/home'
+    | '/login'
+    | '/geo-denied'
+    | '/geo-no-support'
+    | '/geo-prompt'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/home'
+    | '/login'
+    | '/geo-denied'
+    | '/geo-no-support'
+    | '/geo-prompt'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated/home'
+    | '/_unauthenticated/login'
+    | '/_authenticated/_geo/geo-denied'
+    | '/_authenticated/_geo/geo-no-support'
+    | '/_authenticated/_geo/geo-prompt'
+  fileRoutesById: FileRoutesById
+}
+
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  UnauthenticatedLoginRoute: typeof UnauthenticatedLoginRoute
+  AuthenticatedGeoGeoDeniedRoute: typeof AuthenticatedGeoGeoDeniedRoute
+  AuthenticatedGeoGeoNoSupportRoute: typeof AuthenticatedGeoGeoNoSupportRoute
+  AuthenticatedGeoGeoPromptRoute: typeof AuthenticatedGeoGeoPromptRoute
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  AuthenticatedHomeRoute: AuthenticatedHomeRoute,
+  UnauthenticatedLoginRoute: UnauthenticatedLoginRoute,
+  AuthenticatedGeoGeoDeniedRoute: AuthenticatedGeoGeoDeniedRoute,
+  AuthenticatedGeoGeoNoSupportRoute: AuthenticatedGeoGeoNoSupportRoute,
+  AuthenticatedGeoGeoPromptRoute: AuthenticatedGeoGeoPromptRoute,
+}
+
+export const routeTree = rootRoute
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
 /* prettier-ignore-end */
 

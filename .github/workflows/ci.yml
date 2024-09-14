@@ -1,0 +1,21 @@
+name: ci
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bunx semantic-release
